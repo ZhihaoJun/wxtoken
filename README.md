@@ -64,7 +64,7 @@ response
     "appId": "<appid>",
 	"nonceStr": "<noncestr>",
 	"signature": "<signature>",
-	"timestamp": <timestamp:int>
+	"timestamp": 151234212
   }
 }
 ```
