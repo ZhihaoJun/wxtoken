@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t registry.cn-beijing.aliyuncs.com/bigtechcr/wxtoken .
+docker build -t zhihaojun/wxtoken .
