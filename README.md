@@ -12,7 +12,7 @@ weixin access token and jsapi signature service
 
 pull down the image of `zhihaojun/wxtoken` , and run
 
-image environment config
+image environment variable config
 
 * `WXTOKEN_APPID` app id
 * `WXTOKEN_APPSECRET` app secret
