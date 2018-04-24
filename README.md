@@ -25,6 +25,7 @@ image environment variable config
 
 
 ## API
+### access token
 
 `GET /access_token `
 
@@ -37,6 +38,7 @@ response
 ```
 
 
+### jsapi ticket
 
 `GET /jsapi_ticket`
 
@@ -48,7 +50,7 @@ response
 }
 ```
 
-
+### jssdk config
 
 `GET /jssdk_config`
 
