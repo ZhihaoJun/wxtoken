@@ -31,7 +31,9 @@ image environment variable config
 response
 
 ```json
-
+{
+  "t": "<access_token>"
+}
 ```
 
 
@@ -41,7 +43,9 @@ response
 response
 
 ```json
-
+{
+  "t": "<access_token>"
+}
 ```
 
 
