@@ -16,7 +16,9 @@ image environment variable config
 
 * `WXTOKEN_APPID` app id
 * `WXTOKEN_APPSECRET` app secret
-* `WXTOKEN_ADDR` format of `<ip>:<port>` to make app listen on other port, default is `3001`
+* `WXTOKEN_ADDR` format of `<ip>:<port>` to make app listen on other port
+  * default is `0.0.0.0:3001`
+  * the `<ip>` part can be omitted, eg. `:3001`
 
 
 
