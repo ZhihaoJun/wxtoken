@@ -4,7 +4,7 @@ weixin access token and jsapi signature service
 
 * help you to cache access_token and provide HTTP endpoint
 * help you to cache jsapi_ticket
-* help you to signature jssdk config
+* help you to sign jssdk config
 
 
 
