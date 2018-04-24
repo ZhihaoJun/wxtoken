@@ -8,15 +8,15 @@ weixin access token and jsapi signature service
 
 
 
-## usage
+## Usage
 
-pull down the image of `zhihaojun/wxtoken` , and run
+pull down the image of `zhihaojun/wxtoken` , and run it
 
 image environment variable config
 
 * `WXTOKEN_APPID` app id
 * `WXTOKEN_APPSECRET` app secret
-* `WXTOKEN_ADDR` format of `<ip>:<port>` to make app listen on other port
+* `WXTOKEN_ADDR` format of `<ip>:<port>` to make app listen on other port, default is `3001`
 
 
 
@@ -83,7 +83,7 @@ response nothing in body with http code of 200
 
 
 
-## dependencies
+## Dependencies
 
 * echo 2.0
 * golang
