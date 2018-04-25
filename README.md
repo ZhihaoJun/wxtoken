@@ -20,7 +20,7 @@ image environment variable config
 
 
 
-**The container don't have any authentication mechanism. DONT expose any api of the container on the public internet!** 
+**The container doesn't have any authentication mechanism. DONT expose any api of the container on the public internet!** 
 
 
 
@@ -58,7 +58,7 @@ query string parameters
 
 * url: the page full url you are requesting
   * should be url entity escaped
-  * the content after # should be stripped out by user
+  * the content after # will be stripped out automatically
 
 response
 

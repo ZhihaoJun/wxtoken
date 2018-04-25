@@ -110,13 +110,13 @@ func requestAccessToken(appid, secret string) (*weixinAccessTokenResponse, error
 
 func cacheAccessToken(appid, secret string) (string, int) {
 	log.Println("requesting new token")
-	tokenMutex.Lock()
-	defer tokenMutex.Unlock()
 	resp, err := requestAccessToken(appid, secret)
 	if err != nil {
 		log.Println(err)
 		return "", 1
 	}
+	tokenMutex.Lock()
+	defer tokenMutex.Unlock()
 	token = resp.AccessToken
 	log.Println(resp)
 	return resp.AccessToken, resp.ExpiresIn
@@ -168,12 +168,12 @@ func jsapiTicketView(c echo.Context) error {
 func jssdkConfigView(c echo.Context) error {
 	url := c.QueryParam("url")
 
-	jsapiTicketMutex.RLock()
-	defer jsapiTicketMutex.RUnlock()
-
 	nonceStr := RandStringRunes(32)
 	timestamp := time.Now().Unix()
 	timestampStr := fmt.Sprintf("%d", timestamp)
+
+	jsapiTicketMutex.RLock()
+	defer jsapiTicketMutex.RUnlock()
 	sign := WXConfigSign(jsapiTicket, nonceStr, timestampStr, url)
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
@@ -212,13 +212,13 @@ func requestJSApiTicket(accessToken string) (*weixinJSApiTicketResponse, error) 
 
 func cacheJSApiTicket(accessToken string) (string, int) {
 	log.Println("requesting new jsapi ticket")
-	jsapiTicketMutex.Lock()
-	defer jsapiTicketMutex.Unlock()
 	resp, err := requestJSApiTicket(accessToken)
 	if err != nil {
 		log.Println(err)
 		return "", 1
 	}
+	jsapiTicketMutex.Lock()
+	defer jsapiTicketMutex.Unlock()
 	jsapiTicket = resp.Ticket
 	log.Println(resp)
 	return resp.Ticket, resp.ExpiresIn
