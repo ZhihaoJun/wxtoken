@@ -109,16 +109,16 @@ func requestAccessToken(appid, secret string) (*weixinAccessTokenResponse, error
 }
 
 func cacheAccessToken(appid, secret string) (string, int) {
-	log.Println("requesting new token")
+	log.Println("[wxtoken.cacheAccessToken] caching:main requesting new token")
 	resp, err := requestAccessToken(appid, secret)
 	if err != nil {
-		log.Println(err)
+		log.Printf("[wxtoken.cacheAccessToken] caching:main request failed %v\n", err)
 		return "", 1
 	}
 	tokenMutex.Lock()
 	defer tokenMutex.Unlock()
 	token = resp.AccessToken
-	log.Println(resp)
+	log.Printf("[wxtoken.cacheAccessToken] caching:main get response %v\n", resp)
 	return resp.AccessToken, resp.ExpiresIn
 }
 
@@ -211,16 +211,16 @@ func requestJSApiTicket(accessToken string) (*weixinJSApiTicketResponse, error) 
 }
 
 func cacheJSApiTicket(accessToken string) (string, int) {
-	log.Println("requesting new jsapi ticket")
+	log.Println("[wxtoken.cacheJSApiTicket] caching:main requesting new jsapi ticket")
 	resp, err := requestJSApiTicket(accessToken)
 	if err != nil {
-		log.Println(err)
+		log.Printf("[wxtoken.cacheJSApiTicket] caching:main request failed %v\n", err)
 		return "", 1
 	}
 	jsapiTicketMutex.Lock()
 	defer jsapiTicketMutex.Unlock()
 	jsapiTicket = resp.Ticket
-	log.Println(resp)
+	log.Printf("[wxtoken.cacheJSApiTicket] caching:main get response %v\n", resp)
 	return resp.Ticket, resp.ExpiresIn
 }
 
@@ -234,7 +234,7 @@ func main() {
 	appsecret := c.AppSecret
 	tokenCH = make(chan string)
 	go func() {
-		log.Println("start caching token")
+		log.Println("[wxtoken] caching:main start caching token")
 		for {
 			accessToken, t := cacheAccessToken(appid, appsecret)
 			tokenCH <- accessToken
@@ -243,7 +243,7 @@ func main() {
 	}()
 
 	go func() {
-		log.Println("start caching jsapi ticket")
+		log.Println("[wxtoken] caching:main start caching jsapi ticket")
 		for {
 			_, t := cacheJSApiTicket(<-tokenCH)
 			time.Sleep(time.Second * time.Duration(t))
